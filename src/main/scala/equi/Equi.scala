@@ -1,5 +1,8 @@
 package equi
 
+/**
+ * http://blog.codility.com/2011/03/solutions-for-task-equi.html
+ */
 object Equi {
 
   def equi(a: Array[Int]): Int = {
