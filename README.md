@@ -1,0 +1,1 @@
+http://blog.codility.com/2011/03/solutions-for-task-equi.html
