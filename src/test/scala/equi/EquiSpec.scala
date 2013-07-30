@@ -11,7 +11,15 @@ class EquiSpec extends Specification {
     }.eg
 
     {
+      equi(Array(7)) === 0
+    }.eg
+
+    {
       equi(Array(3,1,3)) === 1
+    }.eg
+
+    {
+      equi(Array(-7, 1, 5, 2, -4, 3, 0)) === 3
     }.eg
 
   }
