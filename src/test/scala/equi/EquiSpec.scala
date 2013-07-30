@@ -5,7 +5,7 @@ import Equi._
 
 class EquiSpec extends Specification {
 
-  "equi" should {
+  "equi with small numbers" should {
     {
       equi(Array()) === -1
     }.eg
@@ -21,7 +21,12 @@ class EquiSpec extends Specification {
     {
       equi(Array(-7, 1, 5, 2, -4, 3, 0)) === 3
     }.eg
+  }
 
+  "equi with large numbers" should {
+    {
+      equi(Array(Integer.MAX_VALUE, Integer.MAX_VALUE, 0, -2)) === -1
+    }.eg
   }
 
   "sumsLeftToRight" should {
