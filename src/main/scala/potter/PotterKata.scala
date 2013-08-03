@@ -5,9 +5,17 @@ object PotterKata {
   def minPriceForBasket(bookNumbers: Seq[Int]): Double = {
     val biggestSet = bookNumbers.toSet
     biggestSet.size match {
-      case setSize if setSize<=1 => basePrice*bookNumbers.size
-      case setSize => priceForSet(setSize) + minPriceForBasket(diff(bookNumbers, biggestSet))
+      case setSize if setSize <= 1 => basePrice * bookNumbers.size
+      case setSize => bestPrices(bookNumbers, biggestSet).min
     }
+  }
+
+  def bestPrices(bookNumbers: Seq[Int], biggestSet: Set[Int]): Seq[Double] = {
+    val size = biggestSet.size
+    for {
+      setSize <- size to (if (size == 5) 4 else size) by -1
+      set <- biggestSet.subsets(setSize)
+    } yield priceForSet(set.size) + minPriceForBasket(diff(bookNumbers, set))
   }
 
   def priceForSet(setSize: Int): Double = {

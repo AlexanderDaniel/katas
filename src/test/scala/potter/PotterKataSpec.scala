@@ -3,6 +3,9 @@ package potter
 import org.specs2.mutable.Specification
 import PotterKata._
 
+/**
+ * http://www.codingdojo.org/cgi-bin/wiki.pl?KataPotter
+ */
 class PotterKataSpec extends Specification {
 
   "minPriceForBasket" should {
@@ -22,6 +25,18 @@ class PotterKataSpec extends Specification {
     (8 * 5 * 0.75 + 8 === minPriceForBasket(oneSetOfFiveAndAnotherOne)).eg
     (2 * (5 * 0.75 * 8) === minPriceForBasket(twoSetsOfFiveBook)).eg
     (8 * 3 * 0.9 + 8 * 2 * 0.95 === minPriceForBasket(oneSetOfThreeAndOneOfTwo)).eg
+
+    (2 * (8 * 4 * 0.8) === minPriceForBasket(Seq(0, 0, 1, 1, 2, 2, 3, 4))).eg
+
+    {
+      3 * (8 * 5 * 0.75) + 2 * (8 * 4 * 0.8) === minPriceForBasket(Seq(
+        0, 0, 0, 0, 0,
+        1, 1, 1, 1, 1,
+        2, 2, 2, 2,
+        3, 3, 3, 3, 3,
+        4, 4, 4, 4
+      ))
+    }.eg
   }
 
   "diff" should {
