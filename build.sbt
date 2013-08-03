@@ -1,4 +1,4 @@
-name := "equi"
+name := "katas"
 
 version := "0.1-SNAPSHOT"
  
