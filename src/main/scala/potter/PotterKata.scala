@@ -4,8 +4,18 @@ object PotterKata {
 
   def minPriceForBasket(bookNumbers: Seq[Int]): Double = {
     val biggestSet = bookNumbers.toSet
-    basePrice * discounts(biggestSet.size) * bookNumbers.size
+    biggestSet.size match {
+      case setSize if setSize<=1 => basePrice*bookNumbers.size
+      case setSize => priceForSet(setSize) + minPriceForBasket(diff(bookNumbers, biggestSet))
+    }
   }
+
+  def priceForSet(setSize: Int): Double = {
+    basePrice * discounts(setSize) * setSize
+  }
+
+  def diff(bookNumbers: Seq[Int], set: Set[Int]): Seq[Int] =
+    bookNumbers.diff(set.toSeq)
 
   private val discounts = Map(
     2 -> 0.95,
