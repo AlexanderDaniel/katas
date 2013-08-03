@@ -47,6 +47,18 @@ class PotterKataSpec extends Specification {
     (Seq(0, 1, 2) === diff(Seq(0, 0, 1, 1, 2, 2), Set(0, 1, 2))).eg
   }
 
+  "subsets" should {
+    {
+      Set(0,1,2,3,4).subsets(4).toSet === Set(
+        Set(0,1,2,3),
+        Set(0,1,2,4),
+        Set(0,1,3,4),
+        Set(0,2,3,4),
+        Set(1,2,3,4)
+      )
+    }.eg
+  }
+
   private val anyBook = 0
 
   private val twoDifferentBooks = Seq(0, 1)
@@ -54,12 +66,10 @@ class PotterKataSpec extends Specification {
   private val fourDifferentBooks = Seq(0, 1, 2, 3)
   private val fiveDifferentBooks = Seq(0, 1, 2, 3, 4)
 
-  private val fiveBooks = (0 to 4).toSeq
-
   private val twoSameBooksOutOfThree = Seq(0, 0, 1)
   private val twoSetsOfTwoBooks = Seq(0, 0, 1, 1)
   private val oneSetOfFourBooksAndOneOfTwo = Seq(0, 1, 2, 3, 0, 2)
   private val oneSetOfFiveAndAnotherOne = Seq(0, 1, 2, 3, 4, 1)
-  private val twoSetsOfFiveBook = fiveBooks ++ fiveBooks
+  private val twoSetsOfFiveBook = fiveDifferentBooks ++ fiveDifferentBooks
   private val oneSetOfThreeAndOneOfTwo = Seq(0, 1, 2, 0, 1)
 }
