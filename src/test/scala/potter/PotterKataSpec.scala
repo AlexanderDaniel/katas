@@ -3,9 +3,7 @@ package potter
 import org.specs2.mutable.Specification
 import PotterKata._
 
-/**
- * http://www.codingdojo.org/cgi-bin/wiki.pl?KataPotter
- */
+
 class PotterKataSpec extends Specification {
 
   "minPriceForBasket" should {

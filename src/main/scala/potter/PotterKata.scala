@@ -1,5 +1,10 @@
 package potter
 
+/**
+ * [[http://www.codingdojo.org/cgi-bin/wiki.pl?KataPotter]]
+ *
+ * See doc/PotterKata.pdf for a visualization of the discounts.
+ */
 object PotterKata {
 
   def minPriceForBasket(bookNumbers: Seq[Int]): Double = {
