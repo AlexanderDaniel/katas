@@ -41,7 +41,7 @@ class PotterKataSpec extends Specification {
     (5 * 0.75 * 8 + 4 * 0.8 * 8 + 2 * 0.95 * 8 + 8 === minPriceForBasket(Seq(0, 0, 0, 1, 1, 2, 2, 2, 2, 3, 3, 4))).eg
     (3 * (4 * 0.8 * 8) + 2 * 0.95 * 8 + 8 must beCloseTo(minPriceForBasket(Seq(0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4)), 0.001)).eg
 
-    // Other tests from http://gogognome.nl/2013/01/potter-kata-solution/
+    // Other tests from Sander Kooijmans http://gogognome.nl/2013/01/potter-kata-solution/
     (81.2 === minPriceForBasket(Seq(0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 4, 4))).eg
     (141.6 === minPriceForBasket(Seq(0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4))).eg
     (108.0 === minPriceForBasket(Seq(0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 3, 3, 3))).eg
