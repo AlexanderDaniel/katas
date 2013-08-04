@@ -4,8 +4,8 @@ Various Katas
 Potter Kata
 -----------
 - [Description](http://www.codingdojo.org/cgi-bin/wiki.pl?KataPotter)
-- [Unit tests]()
-- [Implementation]()
+- [Unit tests](src/test/scala/potter/PotterKataSpec.scala)
+- [Implementation](src/main/scala/potter/PotterKata.scala)
 
 Equilibrium Index of a Sequence
 -------------------------------
