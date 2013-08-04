@@ -4,6 +4,14 @@ package potter
  * [[http://www.codingdojo.org/cgi-bin/wiki.pl?KataPotter]]
  *
  * See doc/PotterKata.pdf for a visualization of the discounts.
+ *
+ * Other implementations:
+ * - We did the Potter Kata at the [[https://github.com/scala-vienna/dojo-2013-08/blob/master/src/main/scala/dojo/PotterKata.scala Vienna Scala User Group]]
+ * - [[https://github.com/pebrc/dojo-2013-08/blob/master/src/main/scala/dojo/PotterKata.scala  Peter Brachwitz]]
+ *
+ * Interesting background infos:
+ * - [[https://groups.google.com/forum/#!topic/software_craftsmanship/e_If0tXusyQ]]
+ * - [[http://gogognome.nl/2013/01/potter-kata-solution/]]
  */
 object PotterKata {
 

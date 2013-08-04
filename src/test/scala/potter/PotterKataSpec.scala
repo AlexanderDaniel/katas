@@ -35,6 +35,10 @@ class PotterKataSpec extends Specification {
         4, 4, 4, 4
       ))
     }.eg
+
+    // Test cases proposed at [[https://groups.google.com/forum/#!topic/software_craftsmanship/e_If0tXusyQ]]
+    (5 * 0.75 * 8 + 4 * 0.8 * 8 + 2 * 0.95 * 8 + 8 === minPriceForBasket(Seq(0, 0, 0, 1, 1, 2, 2, 2, 2, 3, 3, 4))).eg
+    (3 * (4 * 0.8 * 8) + 2 * 0.95 * 8 + 8 must beCloseTo(minPriceForBasket(Seq(0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4)), 0.001)).eg
   }
 
   "diff" should {
@@ -49,12 +53,12 @@ class PotterKataSpec extends Specification {
 
   "subsets" should {
     {
-      Set(0,1,2,3,4).subsets(4).toSet === Set(
-        Set(0,1,2,3),
-        Set(0,1,2,4),
-        Set(0,1,3,4),
-        Set(0,2,3,4),
-        Set(1,2,3,4)
+      Set(0, 1, 2, 3, 4).subsets(4).toSet === Set(
+        Set(0, 1, 2, 3),
+        Set(0, 1, 2, 4),
+        Set(0, 1, 3, 4),
+        Set(0, 2, 3, 4),
+        Set(1, 2, 3, 4)
       )
     }.eg
   }
