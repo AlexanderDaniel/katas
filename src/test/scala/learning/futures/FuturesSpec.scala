@@ -5,6 +5,7 @@ import scala.concurrent.{Await, Future}
 import scala.concurrent.duration.Duration
 import scala.concurrent.ExecutionContext.Implicits.global
 import java.util.concurrent.TimeUnit
+import scala.util.Failure
 
 class FuturesSpec extends Specification {
 
@@ -25,25 +26,41 @@ class FuturesSpec extends Specification {
       Await.result(combinedFuture, Duration.Inf) === ()
     }
 
-//    "run them one after the other but I want the results" in {
+    "also handle exceptions as Failure" in {
+      case class SomeException(msg: String) extends Exception
+      def task(n: Int): Future[Unit] = Future {
+        println(s"$n is sleeping...")
+        TimeUnit.SECONDS.sleep(1)
+        println(s"$n is awake")
+        if (n==3)
+          throw new SomeException("3")
+        ()
+      }
+      val combinedFuture: Future[Unit] = List(1, 2, 3).foldLeft(Future(())) {
+        (future, x) => future flatMap {
+          _ => task(x)
+        }
+      }
+      Await.ready(combinedFuture, Duration.Inf)
+      combinedFuture.isCompleted === true
+      val value = combinedFuture.value.get
+      value.isFailure === true
+      value === Failure(new SomeException("3"))
+    }
+
+    //    "run them one after the other but I want the results" in {
 //      def task(n: Int): Future[Int] = Future {
 //        println(s"I want the results: $n is sleeping...")
 //        TimeUnit.SECONDS.sleep(1)
 //        println(s"$n is awake")
-//        n
+//        n*2
 //      }
-//      val futures: List[Future[Int]] = List(1,2,3).scanLeft(Future(0)) {
-//        (z, x) => z map { result =>
-//          task(x)
-//          result
-//        }
+//      val combinedFuture: Future[List[Int]] = List(1,2,3).scanLeft(Future(0)) { (future, x) =>
+//        future flatMap { result => task(x); result }
 //      }
-//      val future: Future[List[Int]] = Future.sequence(futures)
-//
+//      Await.result(combinedFuture, Duration.Inf) === List(1,2,3)
 //    }
   }
-
-
 
   "the futures start running as soon as they are created" should {
     // See also comment http://stackoverflow.com/a/11158557/1388926 of Viktor Klang in
