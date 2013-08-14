@@ -48,18 +48,27 @@ class FuturesSpec extends Specification {
       value === Failure(new SomeException("1"))
     }
 
-    //    "run them one after the other but I want the results" in {
-//      def task(n: Int): Future[Int] = Future {
-//        println(s"I want the results: $n is sleeping...")
-//        TimeUnit.SECONDS.sleep(1)
-//        println(s"$n is awake")
-//        n*2
-//      }
-//      val combinedFuture: Future[List[Int]] = List(1,2,3).scanLeft(Future(0)) { (future, x) =>
-//        future flatMap { result => task(x); result }
-//      }
-//      Await.result(combinedFuture, Duration.Inf) === List(1,2,3)
-//    }
+    "run them one after the other but I want the results" in {
+      def task(n: Int): Future[Int] = Future {
+        println(s"I want the results: $n is sleeping...")
+        TimeUnit.SECONDS.sleep(1)
+        println(s"I want the results: $n is awake")
+        n*2
+      }
+
+      def composeSequentialFuture(input: List[Int]): Future[List[Int]] =
+        input match {
+          case Nil => Future(Nil)
+          case x :: xs => task(x) flatMap { resultOfX =>
+            composeSequentialFuture(xs) map { resultOfXs =>
+              resultOfX :: resultOfXs
+            }
+          }
+        }
+
+      val combinedFuture = composeSequentialFuture(List(1,2,3))
+      Await.result(combinedFuture, Duration.Inf) === List(2,4,6)
+    }
   }
 
   "the futures start running as soon as they are created" should {
