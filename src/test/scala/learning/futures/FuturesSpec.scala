@@ -32,8 +32,8 @@ class FuturesSpec extends Specification {
         println(s"$n is sleeping...")
         TimeUnit.SECONDS.sleep(1)
         println(s"$n is awake")
-        if (n==3)
-          throw new SomeException("3")
+        if (n==1)
+          throw new SomeException("1")
         ()
       }
       val combinedFuture: Future[Unit] = List(1, 2, 3).foldLeft(Future(())) {
@@ -45,7 +45,7 @@ class FuturesSpec extends Specification {
       combinedFuture.isCompleted === true
       val value = combinedFuture.value.get
       value.isFailure === true
-      value === Failure(new SomeException("3"))
+      value === Failure(new SomeException("1"))
     }
 
     //    "run them one after the other but I want the results" in {
